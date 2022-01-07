@@ -1,0 +1,16 @@
+
+
+SSA=/PATH/tosample/dirs/here
+
+tree_data/output.treefile: ./deduplicated_sequences/WWL_Sequences_aln_dedup.fasta
+		iqtree2 -s $^ -m MFP -T 4 -o MN908947.3 --prefix tree_data/output -redo
+
+deduplicated_sequences/WWL_Sequences_aln_dedup.fasta: ./aligned_sequences/WWL_Sequences_aln.fasta
+		seqkit rmdup -n < $^ > $@
+
+aligned_sequences/WWL_Sequences_aln.fasta: ./fastas/WWL_Sequences.fasta ./reference_sequence/MN908947.3.fasta
+		mafft --6merpair --maxambiguous 0.05 --addfragments ./fastas/WWL_Sequences.fasta ./reference_sequence/MN908947.3.fasta > $@ 
+
+
+gather_fastas:
+		cat $(SSA)/*/*/consensus/*.fa > ./fastas/WWL_Sequences.fasta
