@@ -1,3 +1,3 @@
 # Makefiles
 
-Just some of my makefiles I use to keep things running
+Just a place to store my make files
