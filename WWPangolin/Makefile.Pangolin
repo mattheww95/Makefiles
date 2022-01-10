@@ -1,0 +1,13 @@
+
+
+fasta_files := $(wildcard ../Submitter_Specific_Data/*/*/consensus/*.fa)
+
+./pangolin/lineage_report_sorted.csv: ./pangolin/lineage_report.csv
+		sort -t, -u -k1,1 $^ > $@
+
+./pangolin/lineage_report.csv: ./fastas/ALLWW_fastas.fa
+		pangolin $^ -o ./pangolin
+
+./fastas/ALLWW_fastas.fa: $(fasta_files)
+		@for f in $^; do cat $$f;done > $@
+
