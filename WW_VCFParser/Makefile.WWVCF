@@ -1,0 +1,32 @@
+
+
+REFMETA=VCFParser/MEtadata/Path
+TEMPHOME=./
+
+
+clean:
+		rm -rf ./SubmittersDir/*
+
+all: clean GatherSubs GatherVCFData MakeLocDirs MakeLocFiles FinalizeVCFParserSheets RunVCFParser
+
+PrepareVCFData: GatherSubs GatherVCFData MakeLocDirs MakeLocFiles FinalizeVCFParserSheets
+
+GatherSubs:
+		./scripts/GatherSubs.sh
+
+GatherVCFData:
+		./scripts/GatherIvar.sh
+
+MakeLocDirs:
+		./scripts/MakeLocDirs.sh
+
+MakeLocFiles:
+		./scripts/MakeLocFiles.sh
+
+FinalizeVCFParserSheets:
+		./scripts/FinalizeSheet.sh
+
+RunVCFParser:
+		./scripts/RunVCFParser.sh $(TEMPHOME) $(REFMETA)
+
+
