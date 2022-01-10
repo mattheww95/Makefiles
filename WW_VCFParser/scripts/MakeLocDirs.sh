@@ -1,6 +1,6 @@
 #!/usr/bin/env sh 
 
-DIR=/Drives/W/Projects/Project_Chrystal/2020_SARS-CoV-2_Sewage_Project/Analyses/WWVCFParser_rerun/SubmittersDir
+DIR=WWVCFParser_rerun/SubmittersDir
 
 
 for i in $DIR/*
